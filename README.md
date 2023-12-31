@@ -6,13 +6,15 @@ Create Application class and init module from onCreate of it.
 
 ```
     //Create a map containing ads ids you need to use in your app
-    val map=HashMap<String,String>()
-        map[AdMobUtils.OPEN_AD_ID]="ca-app-pub-3940256099942544/3419835294"
-        map[AdMobUtils.BANNER_AD_ID]="ca-app-pub-3940256099942544/6300978111"
-        map[AdMobUtils.RECTANGLE_AD_ID]="ca-app-pub-3940256099942544/6300978111"
-        map[AdMobUtils.INTERSTITIAL_AD_ID]="ca-app-pub-3940256099942544/1033173712"
-        map[AdMobUtils.REWARD_AD_ID]="ca-app-pub-3940256099942544/5224354917"
-        map[AdMobUtils.NATIVE_ADVANCE_AD_ID]="ca-app-pub-3940256099942544/2247696110"
+    val map=HashMap<String,ArrayList<String>>()
+        map[AdMobUtils.OPEN_AD_ID]= arrayListOf("ca-app-pub-3940256099942544/3419835294",)
+        map[AdMobUtils.BANNER_AD_ID]= arrayListOf("ca-app-pub-3940256099942544/6300978111",)
+        map[AdMobUtils.RECTANGLE_AD_ID]= arrayListOf("ca-app-pub-3940256099942544/6300978111",)
+        map[AdMobUtils.INTERSTITIAL_AD_ID]= arrayListOf("ca-app-pub-3940256099942544/1033173712",)
+        map[AdMobUtils.NATIVE_ADVANCE_AD_ID]= arrayListOf("ca-app-pub-3940256099942544/2247696110")
+        map[AdMobUtils.REWARD_AD_ID]= arrayListOf("ca-app-pub-3940256099942544/5224354917")
+        map[AdMobUtils.REWARD_INTERSTITIAL_AD_ID]= arrayListOf("ca-app-pub-3940256099942544/5354046379")
+        
 
     //Set Device Test Id to set test ad request
     val ids=ArrayList<String>()
