@@ -1,5 +1,13 @@
 # AdmobModule
 
+## Add Dependency
+```
+dependencies 
+{
+        implementation 'com.github.vkthe1:AdmobModule:v1.0.0'
+}
+```
+
 ## Initialize AdmobModule
 
 Create Application class and init module from onCreate of it.
