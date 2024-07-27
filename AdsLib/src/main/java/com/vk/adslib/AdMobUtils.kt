@@ -120,8 +120,8 @@ class AdMobUtils(
         callAllAdsRequest()
     }
 
-    fun checkConsent(activity: Activity,listener:AdShowCallBack) {
-        val debugSettings = ConsentDebugSettings.Builder(activity)
+    fun checkConsent(activity: Activity, listener: AdShowCallBack) {
+        val debugSettings = if (BuildConfig.DEBUG) ConsentDebugSettings.Builder(activity)
             .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
             .addTestDeviceHashedId(AdRequest.DEVICE_ID_EMULATOR)
             .addTestDeviceHashedId("9DD45FD0EBCEC4A149AB3409D8065CF2")
@@ -130,15 +130,16 @@ class AdMobUtils(
             .addTestDeviceHashedId("1DEFC50DE26ACD8E2883FF561A7CF508")
             .addTestDeviceHashedId("51743A5BD822D669ED5F76955964F5A4")
             .build()
+        else ConsentDebugSettings.Builder(activity).build()
 
 
-        val params = if (testAdsEnable)
-        {ConsentRequestParameters
-            .Builder()
-            .setTagForUnderAgeOfConsent(isDesignedForFamily)
-            .setConsentDebugSettings(debugSettings)
-            .build()
-        }else{
+        val params = if (testAdsEnable) {
+            ConsentRequestParameters
+                .Builder()
+                .setTagForUnderAgeOfConsent(isDesignedForFamily)
+                .setConsentDebugSettings(debugSettings)
+                .build()
+        } else {
             ConsentRequestParameters
                 .Builder()
                 .setTagForUnderAgeOfConsent(isDesignedForFamily)
@@ -152,12 +153,12 @@ class AdMobUtils(
             {
                 // The consent information state was updated.
                 // You are now ready to check if a form is available.
-                consentStatus=consentInformation.consentStatus
+                consentStatus = consentInformation.consentStatus
                 if (consentInformation.isConsentFormAvailable) {
-                    loadForm(activity,listener)
+                    loadForm(activity, listener)
                 }
 
-                if(consentStatus!=ConsentInformation.ConsentStatus.REQUIRED){
+                if (consentStatus != ConsentInformation.ConsentStatus.REQUIRED) {
                     listener.consentGiven()
                     callAllAdsRequest()
                 }
@@ -169,7 +170,7 @@ class AdMobUtils(
             })
     }
 
-    private fun loadForm(activity: Activity,listener: AdShowCallBack) {
+    private fun loadForm(activity: Activity, listener: AdShowCallBack) {
         // Loads a consent form. Must be called on the main thread.
         UserMessagingPlatform.loadConsentForm(
             activity,
@@ -189,7 +190,7 @@ class AdMobUtils(
                             }
 
                             // Handle dismissal by reloading form.
-                            loadForm(activity,listener)
+                            loadForm(activity, listener)
 
                         }
                     )
@@ -282,7 +283,7 @@ class AdMobUtils(
     }
 
     private fun getAdRequest(): AdRequest {
-          return AdRequest.Builder().build()
+        return AdRequest.Builder().build()
     }
 
 
@@ -299,7 +300,7 @@ class AdMobUtils(
             listener.onAdsCallBack(false)
             return
         }
-        if(consentStatus==ConsentInformation.ConsentStatus.REQUIRED) {
+        if (consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
             listener.onAdsCallBack(false)
             return
         }
@@ -409,7 +410,7 @@ class AdMobUtils(
             return
         }
 
-        if(consentStatus==ConsentInformation.ConsentStatus.REQUIRED) {
+        if (consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
             listener.onAdsCallBack(false)
             return
         }
@@ -508,7 +509,7 @@ class AdMobUtils(
             return
         }
 
-        if(consentStatus==ConsentInformation.ConsentStatus.REQUIRED) {
+        if (consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
             listener.onAdsCallBack(false)
             return
         }
@@ -596,7 +597,7 @@ class AdMobUtils(
             listener.onAdsCallBack(false)
             return
         }
-        if(consentStatus==ConsentInformation.ConsentStatus.REQUIRED) {
+        if (consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
             listener.onAdsCallBack(false)
             return
         }
@@ -677,7 +678,7 @@ class AdMobUtils(
             return
         }
 
-        if(consentStatus==ConsentInformation.ConsentStatus.REQUIRED) {
+        if (consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
             listener.onAdsCallBack(false)
             return
         }
@@ -775,7 +776,7 @@ class AdMobUtils(
             return
         }
 
-        if(consentStatus==ConsentInformation.ConsentStatus.REQUIRED) {
+        if (consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
             listener.onAdsCallBack(false)
             return
         }
@@ -820,7 +821,7 @@ class AdMobUtils(
                                 override fun onAdDismissedFullScreenContent() {
                                     // Called when ad is dismissed.
                                     // Set the ad reference to null so you don't show the ad a second time.
-                                    logText( "Ad dismissed fullscreen content.")
+                                    logText("Ad dismissed fullscreen content.")
                                     rewardedInterstitialAd = null
                                     isShowingAd = false
                                     listener.onAdsCallBack(true)
@@ -838,13 +839,13 @@ class AdMobUtils(
 
                                 override fun onAdImpression() {
                                     // Called when an impression is recorded for an ad.
-                                    logText( "Ad recorded an impression.")
+                                    logText("Ad recorded an impression.")
                                 }
 
                                 override fun onAdShowedFullScreenContent() {
                                     // Called when ad is shown.
                                     isShowingAd = true
-                                    logText( "Ad showed fullscreen content.")
+                                    logText("Ad showed fullscreen content.")
                                 }
                             }
                         rewardedInterstitialAd?.let {
@@ -883,7 +884,7 @@ class AdMobUtils(
             return
         }
 
-        if(consentStatus==ConsentInformation.ConsentStatus.REQUIRED) {
+        if (consentStatus == ConsentInformation.ConsentStatus.REQUIRED) {
             listener.onAdsCallBack(false)
             return
         }

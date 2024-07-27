@@ -6,12 +6,17 @@ import android.os.Handler
 import android.os.Looper
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.admob.databinding.ActivityMainBinding
 import com.vk.adslib.AdMobUtils
 
 class SplashActivity : AppCompatActivity() {
+
+   val binding:ActivityMainBinding by lazy {
+       ActivityMainBinding.inflate(layoutInflater)
+   }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(binding.root)
 
 //        Handler(Looper.getMainLooper()).postDelayed({
 //            (application as AppDelegate).getAdmob()

@@ -4,19 +4,19 @@ plugins {
 }
 
 android {
-    compileSdk 32
-
+    compileSdk 34
+    namespace 'com.example.admob'
     defaultConfig {
-        applicationId "my.little.pony.magic.princess.game"
-        minSdk 19
-        targetSdk 32
+        applicationId "com.example.admob"
+        minSdk 21
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
-        dataBinding true
+        viewBinding = true
     }
     buildTypes {
         release {
@@ -39,11 +39,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar'])
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.7.0'
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha01"
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.8.4"
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.android.gms:play-services-ads:22.1.0'
+    implementation 'com.google.android.gms:play-services-ads:23.2.0'
     implementation project(path: ':AdsLib')
 }
