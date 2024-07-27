@@ -4,7 +4,7 @@
 ```
 dependencies 
 {
-        implementation 'com.github.vkthe1:AdmobModule:v1.0.0'
+        implementation 'com.github.vkthe1:AdmobModule:V1.0.0'
 }
 ```
 
